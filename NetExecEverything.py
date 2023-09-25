@@ -165,6 +165,77 @@ def TESTME():
     s.wait()
     print(f"{RESET}")
 
+def TESTMEH():
+    print(f"{YELLOW}Running tests to see if we have {Z}{RESET}")
+    t = "SMB.txt"
+    with open ("ports.txt", "r") as f:
+        word = "445"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against SMB, saving to {t}{RESET}")
+            s = Popen([f"{cs} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "RDP.txt"
+    with open ("ports.txt", "r") as f:
+        word = "3389"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against RDP, saving to {t}{RESET}")
+            s = Popen([f"{cr} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "WINRM.txt"
+    with open ("ports.txt", "r") as f:
+        word = "5985"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against WINRM, saving to {t}{RESET}")
+            s = Popen([f"{cw} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "SSH.txt"
+    with open ("ports.txt", "r") as f:
+        word = "22/tcp"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against SSH, saving to {t}{RESET}")
+            s = Popen([f"{ch} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "LDAP.txt"
+    with open ("ports.txt", "r") as f:
+        word = "636"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against LDAP and saving to {t}{RESET}")
+            s = Popen([f"{cl} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "MSSQL.txt"
+    with open ("ports.txt", "r") as f:
+        word = "1433"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against MSSQL, saving to {t}{RESET}")
+            s = Popen([f"{cm} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "VNC.txt"
+    with open ("ports.txt", "r") as f:
+        word = "5600"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against VNC, saving to {t}{RESET}")
+            s = Popen([f"{cm} {cruh} >> {t}"], shell=True)
+            s.wait()
+    t = "FTP.txt"
+    with open ("ports.txt", "r") as f:
+        word = "21"
+        content = f.read()
+        if word in content:
+            print(f"{YELLOW}\nRunning against FTP, saving to {t}{RESET}")
+            s = Popen([f"{cm} {cruh} >> {t}"], shell=True)
+            s.wait()
+    print(f"{MAGENTA}\nReminder you have {RED}{Z}{RESET}{MAGENTA} on the following (if any){RED}\n")
+    s = Popen([f"cat *.txt | grep {Z}"], shell=True)
+    s.wait()
+    print(f"{RESET}")
+
 def SMBUP():
     t = "SMB.txt"
     with open ("ports.txt", "r") as f:
@@ -604,8 +675,13 @@ if FILE != None:
     NMAPF()
 if RHOST != None:
     NMAPR()
-if TEST is not False:
+if TEST is not False and PASSWORD != None:
     TESTME()
+    SMBSTAT()
+    LANEBOY()
+    quit()
+if TEST is not False and HASH != None:
+    TESTMEH()
     SMBSTAT()
     LANEBOY()
     quit()
@@ -622,6 +698,7 @@ if PASSWORD != None:
     REMINDER()
     EYELIDS()
 if HASH != None:
+    print(f"Trying with hash {HASH}")
     SMBH()
     RDPH()
     WINRMH()
